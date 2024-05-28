@@ -7,10 +7,6 @@ import datetime
 
 from mysql.connector import connect, Error
 
-import httplib2
-import apiclient.discovery
-from oauth2client.service_account import ServiceAccountCredentials
-
 
 bot = Bot(token='2018100064:AAEY-AybuFG4x4YDU_cyBKdKR0Yf3s33WT4')
 dp = Dispatcher(bot)
@@ -23,11 +19,10 @@ async def cmd_start(message: types.Message):
     keyboard.add(types.KeyboardButton("Создать ссылку"))
     chat_id = message.chat.id
     print(message.text)
-
     mydb = connect(
         host="localhost",
         user="root",
-        password="password",
+        password="Tractor!337",
         database="bot"
     )
     mycursor = mydb.cursor()
@@ -78,7 +73,7 @@ async def process_callback_subscribed(callback_query: types.CallbackQuery):
         mydb = connect(
             host="localhost",
             user="root",
-            password="password",
+            password="Tractor!337",
             database="bot"
         )
         mycursor = mydb.cursor()
@@ -96,6 +91,7 @@ async def process_callback_subscribed(callback_query: types.CallbackQuery):
 async def cmd_start(message: types.Message):
     link = "https://t.me/TeskisBot?start=" + str(message.chat.id)
     await bot.send_message(message.chat.id, f"Ваша реферальная ссылка: {link}")
+
 
 if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
